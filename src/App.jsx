@@ -2,15 +2,7 @@ import { BiSearch } from 'react-icons/bi';
 import { Slider } from './components/Slider';
 import './App.css';
 
-// const API_URL = 'https://www.omdbapi.com/?apikey=815d8454';
-
 function App() {
-	// const searchMovies = async searchValue => {
-	// 	const response = await fetch(`${API_URL}&s=${searchValue}`);
-	// 	const data = await response.json();
-	// 	console.log(data);
-	// };
-
 	return (
 		<div className='bg-zinc-900'>
 			<div className='center h-screen w-11/12 m-auto flex flex-col items-center'>
@@ -29,14 +21,12 @@ function App() {
 							placeholder='Search for movies'
 						/>
 						<div className='flex items-center justify-center h-14 p-2 rounded-r-md hover: transition-all duration-75 cursor-pointer'>
-							<BiSearch
-								className='text-3xl scale-95 ml-1 text-gray-300 transition-all duration-75'
-								onClick={() => console.log('searching...')}
-							/>
+							<BiSearch className={`text-3xl scale-95 ml-1 text-gray-300`} />
 						</div>
 					</div>
 				</header>
-				<Slider />
+				<Slider type={'latest-movies'} title={'Ultimas películas'} />
+				<Slider type={'latest-tv'} title={'Ultimas series'} />
 			</div>
 		</div>
 	);
