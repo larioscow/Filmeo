@@ -35,5 +35,5 @@
 	}
 } */
 .splide__arrow--prev {
-	display: none;
+	/* opacity: 0; */
 }

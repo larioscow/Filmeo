@@ -1,43 +1,5 @@
 import { Splide, SplideSlide } from '@splidejs/react-splide';
-import { useCallback, useRef } from 'react';
 import { Movie } from './Movie';
-
-const useHookWithRefCallback = () => {
-	const ref = useRef(null);
-	const setRef = useCallback(node => {
-		if (ref.current) {
-			// Make sure to cleanup any events/references added to the last instance
-			ref.current.removeEventListener('transitionend', () => {});
-		}
-
-		if (node) {
-			const slider = node.children[1].children[1].children[0];
-			if (slider) {
-				slider.addEventListener('transitionend', () => {
-					const translateX = Number(
-						slider.style.transform
-							.split('translateX(')[1]
-							.split('px')[0]
-							.split('-')[1],
-					);
-					console.log(translateX);
-					const arrowLetf = node.children[1].children[0].children[0];
-					const arrowRight = node.children[1].children[0].children[1];
-
-					if (translateX) {
-						arrowLetf.style.display = 'block';
-					} else {
-						arrowLetf.style.display = 'none';
-					}
-				});
-			}
-		}
-
-		// Save a reference to the node
-		ref.current = node;
-	}, []);
-	return [setRef];
-};
 
 const movie = {
 	Title: 'Comedians in Cars Getting Coffee',
@@ -49,11 +11,8 @@ const movie = {
 };
 
 export const Slider = () => {
-	const [ref] = useHookWithRefCallback();
-
 	return (
 		<div
-			ref={ref}
 			className='
 					ml-[calc((100vw-91.666667vw)/2)]
 					w-[calc(100vw-(100vw-91.666667vw)/2)]
@@ -63,6 +22,8 @@ export const Slider = () => {
 				Ultimos Estrenos
 			</h2>
 			<Splide
+				tag='section'
+				onActive={e => console.log(e)}
 				options={{
 					mediaQuery: 'min',
 					pagination: false,

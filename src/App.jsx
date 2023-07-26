@@ -2,14 +2,14 @@ import { BiSearch } from 'react-icons/bi';
 import { Slider } from './components/Slider';
 import './App.css';
 
-const API_URL = 'https://www.omdbapi.com/?apikey=815d8454';
+// const API_URL = 'https://www.omdbapi.com/?apikey=815d8454';
 
 function App() {
-	const searchMovies = async searchValue => {
-		const response = await fetch(`${API_URL}&s=${searchValue}`);
-		const data = await response.json();
-		console.log(data);
-	};
+	// const searchMovies = async searchValue => {
+	// 	const response = await fetch(`${API_URL}&s=${searchValue}`);
+	// 	const data = await response.json();
+	// 	console.log(data);
+	// };
 
 	return (
 		<div className='bg-zinc-900'>
