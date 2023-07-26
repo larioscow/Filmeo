@@ -13,14 +13,12 @@
 	padding-left: 0;
 	padding-right: 0;
 }
-.splide__arrow svg {
+/* .splide__arrow svg {
 	fill: transparent;
 	margin-left: 15px;
 	transition: fill 150ms;
 }
-.splide__arrow--prev {
-	display: none;
-}
+
 .splide__arrow--next {
 	right: 0;
 	background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, #000000b1 100%);
@@ -31,9 +29,11 @@
 	fill: white;
 }
 
-/* break point at 640 */
 @media (max-width: 640px) {
 	.splide {
 		padding-right: 0;
 	}
+} */
+.splide__arrow--prev {
+	display: none;
 }
