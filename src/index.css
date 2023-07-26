@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,600;9..40,900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+	font-family: 'DM Sans', sans-serif;
+}
+.splide {
+	padding-top: 1rem;
+	padding-bottom: 1rem;
+	padding-left: 0;
+	padding-right: 0;
+}
+.splide__arrow svg {
+	fill: transparent;
+	margin-left: 15px;
+	transition: fill 150ms;
+}
+.splide__arrow--prev {
+	display: none;
+}
+.splide__arrow--next {
+	right: 0;
+	background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, #000000b1 100%);
+	height: calc(100% - 2rem);
+	width: 4rem;
+}
+.splide:hover .splide__arrow svg {
+	fill: white;
+}
+
+/* break point at 640 */
+@media (max-width: 640px) {
+	.splide {
+		padding-right: 0;
+	}
+}
