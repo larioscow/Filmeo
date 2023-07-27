@@ -35,7 +35,6 @@ export const Slider = ({ type, title }) => {
 
 	const hideArrows = e => {
 		if (ref.current) {
-			console.log(e.index);
 			const index = ref.current.splide.root.id;
 			const al = '#' + index + ' .splide__arrow--prev';
 			const ar = '#' + index + ' .splide__arrow--next';
@@ -70,6 +69,7 @@ export const Slider = ({ type, title }) => {
 					<Splide
 						ref={ref}
 						tag='section'
+						onArrowsMounted={e => hideArrows(e)}
 						onActive={e => hideArrows(e)}
 						options={{
 							mediaQuery: 'min',
