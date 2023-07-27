@@ -1,14 +1,16 @@
 import { Splide, SplideSlide } from '@splidejs/react-splide';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { Movie } from './Movie';
 
 const sliderTypes = {
 	'latest-movies':
 		'https://api.themoviedb.org/3/discover/movie?include_adult=false',
 	'latest-tv': 'https://api.themoviedb.org/3/discover/tv?include_adult=false',
+	'top-rated-tv': 'https://api.themoviedb.org/3/tv/top_rated',
 };
 
 export const Slider = ({ type, title }) => {
+	const ref = useRef();
 	const [movies, setMovies] = useState(null);
 
 	useEffect(() => {
@@ -32,21 +34,29 @@ export const Slider = ({ type, title }) => {
 	}, []);
 
 	const hideArrows = e => {
-		const arrowLeft = document.querySelector('.splide__arrow--prev');
-		const arrowRight = document.querySelector('.splide__arrow--next');
-		console.log(e.index);
-		if (e.index === 0) {
-			arrowLeft.classList.add('hidden');
-			arrowRight.classList.remove('hidden');
-		}
-		if (e.index > 0) {
-			arrowLeft.classList.remove('hidden');
-			arrowRight.classList.remove('hidden');
-		}
-		if (e.index === movies.length - 2) {
-			arrowRight.classList.add('hidden');
+		if (ref.current) {
+			console.log(e.index);
+			const index = ref.current.splide.root.id;
+			const al = '#' + index + ' .splide__arrow--prev';
+			const ar = '#' + index + ' .splide__arrow--next';
+			const arrowLeft = document.querySelector(al);
+			const arrowRight = document.querySelector(ar);
+
+			if (e.index === 0) {
+				arrowLeft.classList.add('hidden');
+				arrowRight.classList.remove('hidden');
+			}
+			if (e.index > 0 && e.index < 10) {
+				arrowLeft.classList.remove('hidden');
+				arrowRight.classList.remove('hidden');
+			}
+			if (e.index >= 10) {
+				arrowRight.classList.add('hidden');
+				arrowLeft.classList.remove('hidden');
+			}
 		}
 	};
+
 	return (
 		<div
 			className='
@@ -56,38 +66,41 @@ export const Slider = ({ type, title }) => {
 		>
 			<h2 className='text-white text-2xl md:text-3xl font-bold'>{title}</h2>
 			{movies && (
-				<Splide
-					tag='section'
-					onActive={e => hideArrows(e)}
-					options={{
-						mediaQuery: 'min',
-						pagination: false,
-						rewind: true,
-						rewindByDrag: true,
-						width: '100%',
-						fixedWidth: '155px',
-						perMove: 1,
-						arrows: false,
+				<div className='pb-3'>
+					<Splide
+						ref={ref}
+						tag='section'
+						onActive={e => hideArrows(e)}
+						options={{
+							mediaQuery: 'min',
+							pagination: false,
+							rewind: true,
+							rewindByDrag: true,
+							width: '100%',
+							fixedWidth: '155px',
+							perMove: 4,
+							arrows: false,
 
-						padding: { left: '0rem' },
-						perPage: 2,
+							padding: { left: '0rem', right: '2rem' },
+							perPage: 2,
 
-						breakpoints: {
-							640: {
-								arrows: true,
+							breakpoints: {
+								640: {
+									arrows: true,
+								},
+								768: {
+									fixedWidth: '186px',
+								},
 							},
-							768: {
-								fixedWidth: '186px',
-							},
-						},
-					}}
-				>
-					{movies.map(movie => (
-						<SplideSlide key={movie.id}>
-							<Movie movie={movie} tv />
-						</SplideSlide>
-					))}
-				</Splide>
+						}}
+					>
+						{movies.map(movie => (
+							<SplideSlide key={movie.id}>
+								<Movie movie={movie} tv />
+							</SplideSlide>
+						))}
+					</Splide>
+				</div>
 			)}
 		</div>
 	);

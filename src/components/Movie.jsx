@@ -1,5 +1,4 @@
 export const Movie = ({ movie }) => {
-	console.log(movie);
 	return (
 		<div className='group container rounded-md w-36 h-60 md:w-44 md:h-72  hover hover:cursor-pointer duration-150'>
 			<div className='absolute w-36 h-60 md:w-44 md:h-72 z-0 group-hover:brightness-50'>

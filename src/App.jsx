@@ -5,7 +5,7 @@ import './App.css';
 function App() {
 	return (
 		<div className='bg-zinc-900'>
-			<div className='center h-screen w-11/12 m-auto flex flex-col items-center'>
+			<div className='center w-11/12 m-auto flex flex-col items-center'>
 				<header className='flex place-content-center justify-center sm:justify-between w-full h-10 items-center py-12'>
 					<span
 						className='hidden sm:inline-block font-dmsans font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-red-600 text-4xl cursor-pointer'
@@ -26,6 +26,7 @@ function App() {
 					</div>
 				</header>
 				<Slider type={'latest-movies'} title={'Ultimas películas'} />
+				<Slider type={'top-rated-tv'} title={'Series mejor calificadas'} />
 				<Slider type={'latest-tv'} title={'Ultimas series'} />
 			</div>
 		</div>
