@@ -1,12 +1,14 @@
 import { Splide, SplideSlide } from '@splidejs/react-splide';
 import { useEffect, useState, useRef } from 'react';
 import { Movie } from './Movie';
+import { language } from '../../lang';
 
 const sliderTypes = {
 	'latest-movies':
 		'https://api.themoviedb.org/3/discover/movie?include_adult=false',
-	'latest-tv': 'https://api.themoviedb.org/3/discover/tv?include_adult=false',
+	'latest-tv': 'https://api.themoviedb.org/3/discover/tv?include_adult=fsalse',
 	'top-rated-tv': 'https://api.themoviedb.org/3/tv/top_rated',
+	region: `https://api.themoviedb.org/3/discover/movie?with_origin_country=${language.alpha2}&include_adult=false`,
 };
 
 export const Slider = ({ type, title }) => {

@@ -20,7 +20,9 @@ export const Movie = ({ movie }) => {
 					group-hover:animate-ease-linear
 					'
 					>
-						{(movie.release_date || movie.first_air_date).split('-')[0]}
+						{movie.release_date || movie.first_air_date
+							? (movie.release_date || movie.first_air_date).split('-')[0]
+							: 'N/A'}
 					</p>
 					<div
 						className='text-sm rounded-b-md p-2
